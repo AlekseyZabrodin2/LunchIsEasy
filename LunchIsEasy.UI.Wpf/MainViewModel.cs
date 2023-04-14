@@ -61,7 +61,7 @@ namespace LunchIsEasy.UI.Wpf
 
         private void PerformGoToAuthorizationWindow()
         {
-            var authorizationPage = new AuthorizationPage();
+            var authorizationPage = new PageAuthorization();
             Application.Current.MainWindow.Content = authorizationPage;
         }
 

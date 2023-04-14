@@ -58,11 +58,8 @@
               Background="Gray">
 
             <Button Name="SignUp"
-                                     
-                    
-                      
-                       HorizontalAlignment="Center"        
-                       Content="Sign In8976987439438740928"
+                    HorizontalAlignment="Center"        
+                    Content="Sign Up"
                     Command="{Binding ToAuthorizationWindow}">
 
             </Button>

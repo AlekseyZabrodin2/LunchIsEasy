@@ -1,27 +1,23 @@
-﻿<mah:MetroWindow x:Class="LunchIsEasy.UI.Wpf.PageAuthorization"
-                 xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                 xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-                 xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-                 xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                 xmlns:wpf="clr-namespace:LunchIsEasy.UI.Wpf"
-                 xmlns:prism="http://prismlibrary.com/"
-                 d:DataContext="{d:DesignInstance Type=wpf:MainViewModel, IsDesignTimeCreatable=False}"
-                 mc:Ignorable="d" 
-                 Height="550" 
-                 Width="800">
-
+﻿<UserControl x:Class="LunchIsEasy.UI.Wpf.PageAuthorization"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+      xmlns:wpf="clr-namespace:LunchIsEasy.UI.Wpf"
+      d:DataContext="{d:DesignInstance Type=wpf:MainViewModel, IsDesignTimeCreatable=False}"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800">
 
     <Grid ShowGridLines="False">
 
-
-        <!--<Grid.Resources>
+        <Grid.Resources>
 
             <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
                 <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
             </Style>
 
-        </Grid.Resources>-->
+        </Grid.Resources>
 
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -47,7 +43,6 @@
               Grid.RowSpan="5"
               Grid.ColumnSpan="3"
               Background="LightGray">
-
 
             <Frame x:Name="authorization"/>
 
@@ -137,13 +132,13 @@
               Grid.Column="2"
               Grid.Row="4">
 
-            <Button Name="SignIn"
+            <Button Name="LogIn"
                     Width="150"
                     Height="50"                    
                     Background="DodgerBlue"
                     HorizontalAlignment="Center"
                     Foreground="White"
-                    Content="Sign In" >
+                    Content="Log In" >
 
             </Button>
         </Grid>
@@ -153,11 +148,9 @@
               Grid.Row="5">
 
             <Button Name="SignUp"
-                    
-                    
-                    Click="PerformGoToRegistrationWindow"
-                       HorizontalAlignment="Center"        
-                       Content="Sign In111" >
+                    Command="{Binding ToRegistrationWindow}"
+                    HorizontalAlignment="Center"        
+                    Content="Lost your username or password?" >
 
             </Button>
         </Grid>
@@ -167,6 +160,4 @@
 
 
     </Grid>
-</mah:MetroWindow>
-
-    
+</UserControl>

@@ -1,4 +1,4 @@
-﻿using Prism.Commands;
+﻿using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +17,7 @@ using System.Windows.Shapes;
 namespace LunchIsEasy.UI.Wpf
 {
     /// <summary>
-    /// Interaction logic for PageAuthorization.xaml
+    /// Interaction logic for AuthorizationPage.xaml
     /// </summary>
     public partial class PageAuthorization
     {
@@ -25,6 +25,9 @@ namespace LunchIsEasy.UI.Wpf
         {
             InitializeComponent();
         }
+
+
+
 
 
 
@@ -70,10 +73,10 @@ namespace LunchIsEasy.UI.Wpf
         }
 
 
-        public void PerformGoToRegistrationWindow(object sender, RoutedEventArgs e)
-        {            
-            authorization.Navigate(new PageRegistration());
-        }
+
+
+
+
 
     }
 }

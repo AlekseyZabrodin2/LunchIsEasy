@@ -24,12 +24,10 @@ namespace LunchIsEasy.UI.Wpf
         {
             InitializeComponent();
 
-            Application.Current.MainWindow.Content = new AuthorizationPage();
+            Application.Current.MainWindow.Content = new PageAuthorization();
 
             
 
-            //DataContext = new AuthorizationWindow(); 
-            //MainFrame.Content = new AuthorizationPage();
         }
     }
 }
