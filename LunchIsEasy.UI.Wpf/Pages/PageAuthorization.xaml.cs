@@ -74,9 +74,5 @@ namespace LunchIsEasy.UI.Wpf
 
 
 
-
-
-
-
     }
 }
