@@ -7,8 +7,8 @@
              xmlns:wpf="clr-namespace:LunchIsEasy.UI.Wpf"
              d:DataContext="{d:DesignInstance Type=wpf:MainViewModel, IsDesignTimeCreatable=False}"
              mc:Ignorable="d" 
-             Height="550" 
-             Width="800">
+             Height="450" 
+             Width="750">
 
 
 
@@ -26,6 +26,7 @@
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>            
+            <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
@@ -52,17 +53,19 @@
         <Grid Name="RegistrationButton"
               Grid.Row="0"
               Grid.Column="0"
-              Grid.ColumnSpan="5"
-              Grid.RowSpan="7"
-              HorizontalAlignment="Center"
+              Grid.ColumnSpan="4"
+              Grid.RowSpan="5"
               Background="Gray">
 
-            <Button Name="SignUp"
-                    HorizontalAlignment="Center"        
+            <Border Padding="5">
+                <Button Name="SignUp"    
                     Content="Sign Up"
                     Command="{Binding ToAuthorizationWindow}">
 
-            </Button>
+                </Button>
+            </Border>
+
+            
         </Grid>
 
 
