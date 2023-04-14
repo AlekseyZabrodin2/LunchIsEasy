@@ -14,16 +14,18 @@
                  WindowStartupLocation="CenterScreen">
 
     <Grid ShowGridLines="True">
+        
+        <Grid >
 
-        <Frame Name="MainFrame"
-           Background="Transparent"
-           NavigationUIVisibility="Hidden">
-        </Frame>
+            <Frame Name="MainFrame"
+                   Background="Transparent"
+                   NavigationUIVisibility="Hidden">
+            </Frame>
 
-        <!--<ContentControl Content="{Binding ToAuthorizationWindow}">-->
-            
-        <!--</ContentControl>-->
+            <ContentControl Content="{Binding GetApplicationContent}"/>
 
-    </Grid>   
-    
+        </Grid>
+        
+    </Grid>
+
 </Window>
