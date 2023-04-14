@@ -4,56 +4,33 @@ using Prism.Commands;
 using Prism.Mvvm;
 using System.Threading;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Media;
 using System.Windows.Navigation;
 
 namespace LunchIsEasy.UI.Wpf
 {
     public class MainViewModel : BindableBase
     {
-        //public MainViewModel()
-        //{
-        //    AutorizWindow = new RelayCommand(GoToAutorPage);
-        //}
+       
 
-        //MainWindow MainWindow { get; set; }
 
-        //public RelayCommand AutorizWindow { get; }
+        private PageAuthorization _getApplicationContent;
+        public PageAuthorization GetApplicationContent => _getApplicationContent = new PageAuthorization();
 
 
 
-        //public void GoToAutorPage()
-        //{
-        //    MainWindow.Content = new AuthorizationPage();
-        //}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        public MainWindow mainWindow;
 
 
         private DelegateCommand _toRegistrationWindow;
         public ICommand ToRegistrationWindow => _toRegistrationWindow = new DelegateCommand(PerformGoToRegistrationWindow);
+
         private void PerformGoToRegistrationWindow()
         {
-
             PageRegistration registration = new PageRegistration();
             Application.Current.MainWindow.Content = registration;
         }
-
-
-
 
 
         private RelayCommand _toAuthorizationWindow;
@@ -69,17 +46,11 @@ namespace LunchIsEasy.UI.Wpf
 
 
 
-        //private RelayCommand _toAuthorizationWindow;
-        //public RelayCommand ToAuthorizationWindow => _toAuthorizationWindow = new RelayCommand(PerformGoToAuthorizationWindow);
-        //private void PerformGoToAuthorizationWindow()
-        //{
 
 
 
-        //    mainWindow.DataContext = new AuthorizationPage();
 
 
-        //}
 
 
     }
