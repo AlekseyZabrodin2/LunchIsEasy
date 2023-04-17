@@ -1,7 +1,10 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using LunchIsEasy.UI.Wpf.Model;
+using LunchIsEasy.UI.Wpf.Model.Data;
 using Microsoft.EntityFrameworkCore.Storage;
 using Prism.Commands;
 using Prism.Mvvm;
+using System.Collections.Generic;
 using System.Threading;
 using System.Windows;
 using System.Windows.Controls;
@@ -13,11 +16,29 @@ namespace LunchIsEasy.UI.Wpf
 {
     public class MainViewModel : BindableBase
     {
-       
+
 
 
         private PageAuthorization _getApplicationContent;
         public PageAuthorization GetApplicationContent => _getApplicationContent = new PageAuthorization();
+
+
+
+        private List<Accounts> _allAccounts = AccountDBCommand.GetAllAccounts();
+
+        public List<Accounts> Accounts
+        {
+            get
+            {
+                return _allAccounts;
+            }
+            set
+            {
+                SetProperty(ref _allAccounts, value);
+            }
+        }
+
+
 
 
 

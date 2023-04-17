@@ -10,7 +10,7 @@
              d:DesignHeight="450" 
              d:DesignWidth="750">
 
-    <Grid ShowGridLines="False">
+    <Grid ShowGridLines="True">
 
         <Grid.Resources>
 

@@ -1,4 +1,7 @@
-﻿using System;
+﻿using LunchIsEasy.UI.Wpf.Model;
+using LunchIsEasy.UI.Wpf.Model.Data;
+using Microsoft.EntityFrameworkCore;
+using System;
 using System.Windows;
 
 namespace LunchIsEasy.UI.Wpf
