@@ -72,7 +72,7 @@
                     Margin="25, 15, 15, 15">
 
                 <TextBox Name="NameTextBox"
-                         Text="Name"
+                         Text="{Binding SetName, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="15"
                          Background="Transparent"
                          BorderThickness="0"
@@ -97,7 +97,7 @@
                     Margin="25, 15, 15, 15">
 
                 <TextBox Name="SurnameTextBox"
-                         Text="Surname"
+                         Text="{Binding SetSurname, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="15"
                          Background="Transparent"
                          BorderThickness="0"
@@ -123,15 +123,16 @@
                     Margin="25, 15, 15, 15">
 
                 <TextBox Name="TelephoneTextBox"
-                         Text="Telephone"
+                         Text="{Binding SetTelephone, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="15"
                          Background="Transparent"
                          BorderThickness="0"
-                         Foreground="Gray"
+                         Foreground="Gray"                         
                          TextAlignment="Left"
                          VerticalContentAlignment="Center"
                          GotFocus="OnTelephoneTextBoxGotFocus"
-                         LostFocus="OnTelephoneTextBoxLostFocus">
+                         LostFocus="OnTelephoneTextBoxLostFocus"
+                         MaxLength="13">
                 </TextBox>
             </Border>
         </Grid>
@@ -147,7 +148,7 @@
                     Margin="15, 15, 25, 15">
 
                 <TextBox Name="LoginTextBox"
-                         Text="Login"
+                         Text="{Binding SetLogin, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="15"
                          Background="Transparent"
                          BorderThickness="0"
@@ -172,7 +173,7 @@
                     Margin="15, 15, 25, 15">
 
                 <TextBox Name="PasswordTextBox"
-                         Text="Password"
+                         Text="{Binding SetPassword, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="15"
                          Background="Transparent"
                          BorderThickness="0"
@@ -198,7 +199,7 @@
                     Margin="15, 15, 25, 15">
 
                 <TextBox Name="RepeatPasswordTextBox"
-                         Text="Repeat password"
+                         Text="{Binding SetRepeatPassword, UpdateSourceTrigger=PropertyChanged}"
                          FontSize="15"
                          Background="Transparent"
                          BorderThickness="0"
@@ -222,7 +223,7 @@
             
                 <Button Name="SignUp"    
                     Content="Sign Up"
-                    Command="{Binding ToAuthorizationWindow}">
+                    Command="{Binding ToRegisterAccount}">
 
                 </Button>
             
