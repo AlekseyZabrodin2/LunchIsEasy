@@ -10,15 +10,20 @@ namespace LunchIsEasy.UI.Wpf.Model
     {
         public int Id { get; set; }
 
-        public string Login { get; set; }
-
         public string Name { get; set; }
 
         public string Surname { get; set; }
 
+        public long Telephone { get; set; }
+
+        public string Login { get; set; }
+
         public string Password { get; set; }
 
-        public int Telephone { get; set; }
+       public string RepeatPassword { get; set; }
+
+
+
 
     }
 }
