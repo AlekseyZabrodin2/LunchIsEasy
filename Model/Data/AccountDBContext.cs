@@ -53,7 +53,7 @@ namespace LunchIsEasy.UI.Wpf.Model.Data
             #region Configure Primary Keys
 
 
-            modelBuilder.Entity<Accounts>().HasKey(patient => patient.Id).HasName("PK_Id");
+            modelBuilder.Entity<Accounts>().HasKey(account => account.Id).HasName("PK_Id");
 
             modelBuilder.Entity<Accounts>().HasCharSet("Utf8");
 
@@ -66,15 +66,15 @@ namespace LunchIsEasy.UI.Wpf.Model.Data
             #region Configure indexes
 
             
-            modelBuilder.Entity<Accounts>().HasIndex(patient => patient.Id).HasDatabaseName("Idx_Primary").IsUnique();
+            modelBuilder.Entity<Accounts>().HasIndex(account => account.Id).HasDatabaseName("Idx_Primary").IsUnique();
 
-            modelBuilder.Entity<Accounts>().HasIndex(patient => patient.Login).HasDatabaseName("Login").IsFullText();
+            modelBuilder.Entity<Accounts>().HasIndex(account => account.Login).HasDatabaseName("Login").IsFullText();
 
-            modelBuilder.Entity<Accounts>().HasIndex(patient => patient.Password).HasDatabaseName("Password").IsFullText();
+            modelBuilder.Entity<Accounts>().HasIndex(account => account.Password).HasDatabaseName("Password").IsFullText();
 
-            modelBuilder.Entity<Accounts>().HasIndex(patient => patient.Name).HasDatabaseName("Name").IsFullText();
+            modelBuilder.Entity<Accounts>().HasIndex(account => account.Name).HasDatabaseName("Name").IsFullText();
 
-            modelBuilder.Entity<Accounts>().HasIndex(patient => patient.Surname).HasDatabaseName("Surname").IsFullText();
+            modelBuilder.Entity<Accounts>().HasIndex(account => account.Surname).HasDatabaseName("Surname").IsFullText();
 
 
             #endregion
@@ -83,18 +83,20 @@ namespace LunchIsEasy.UI.Wpf.Model.Data
             #region Configure columns table Patient
 
 
-            modelBuilder.Entity<Accounts>().Property(patient => patient.Id).HasColumnType("INT UNSIGNED NOT NULL").IsRequired();
+            modelBuilder.Entity<Accounts>().Property(account => account.Id).HasColumnType("INT UNSIGNED NOT NULL").IsRequired();
 
-            modelBuilder.Entity<Accounts>().Property(patient => patient.Login).HasColumnType("varchar(64)").IsRequired();
+            modelBuilder.Entity<Accounts>().Property(account => account.Login).HasColumnType("varchar(64)").IsRequired();
 
-            modelBuilder.Entity<Accounts>().Property(patient => patient.Password).HasColumnType("varchar(64)").IsRequired();
+            modelBuilder.Entity<Accounts>().Property(account => account.Password).HasColumnType("varchar(64)").IsRequired();
 
-            modelBuilder.Entity<Accounts>().Property(patient => patient.Name).HasColumnType("varchar(64)").IsRequired();
+            modelBuilder.Entity<Accounts>().Property(account => account.RepeatPassword).HasColumnType("varchar(64)").IsRequired();
 
-            modelBuilder.Entity<Accounts>().Property(patient => patient.Surname).HasColumnType("varchar(64)").IsRequired();
+            modelBuilder.Entity<Accounts>().Property(account => account.Name).HasColumnType("varchar(64)").IsRequired();
 
-            modelBuilder.Entity<Accounts>().Property(patient => patient.Telephone).HasColumnType("INT UNSIGNED NOT NULL").IsRequired();
+            modelBuilder.Entity<Accounts>().Property(account => account.Surname).HasColumnType("varchar(64)").IsRequired();
 
+            modelBuilder.Entity<Accounts>().Property(account => account.Telephone).HasColumnType("BIGINT").IsRequired();
+            
 
             #endregion
 
