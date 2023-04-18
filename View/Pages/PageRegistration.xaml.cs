@@ -33,7 +33,7 @@ namespace LunchIsEasy.UI.Wpf
             if (NameTextBox.Text == "Name")
             {
                 NameTextBox.Text = string.Empty;
-                NameTextBox.Foreground = Brushes.Gray;
+                NameTextBox.Foreground = Brushes.Black;
                 NameTextBox.CaretIndex = 0;
             }
         }
@@ -54,7 +54,7 @@ namespace LunchIsEasy.UI.Wpf
             if (SurnameTextBox.Text == "Surname")
             {
                 SurnameTextBox.Text = string.Empty;
-                SurnameTextBox.Foreground = Brushes.Gray;
+                SurnameTextBox.Foreground = Brushes.Black;
                 SurnameTextBox.CaretIndex = 0;
             }
         }
@@ -74,8 +74,8 @@ namespace LunchIsEasy.UI.Wpf
         {
             if (TelephoneTextBox.Text == "Telephone")
             {
-                TelephoneTextBox.Text = string.Empty;
-                TelephoneTextBox.Foreground = Brushes.Gray;
+                TelephoneTextBox.Text = "+375";
+                TelephoneTextBox.Foreground = Brushes.Black;
                 TelephoneTextBox.CaretIndex = 0;
             }
         }
@@ -83,7 +83,7 @@ namespace LunchIsEasy.UI.Wpf
 
         public void OnTelephoneTextBoxLostFocus(object sender, RoutedEventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(TelephoneTextBox.Text))
+            if (TelephoneTextBox.Text == "+375" || string.IsNullOrWhiteSpace(TelephoneTextBox.Text))
             {
                 TelephoneTextBox.Text = "Telephone";
                 TelephoneTextBox.Foreground = Brushes.Gray;
@@ -96,7 +96,7 @@ namespace LunchIsEasy.UI.Wpf
             if (LoginTextBox.Text == "Login")
             {
                 LoginTextBox.Text = string.Empty;
-                LoginTextBox.Foreground = Brushes.Gray;
+                LoginTextBox.Foreground = Brushes.Black;
                 LoginTextBox.CaretIndex = 0;
             }
         }
@@ -117,7 +117,7 @@ namespace LunchIsEasy.UI.Wpf
             if (PasswordTextBox.Text == "Password")
             {
                 PasswordTextBox.Text = string.Empty;
-                PasswordTextBox.Foreground = Brushes.Gray;
+                PasswordTextBox.Foreground = Brushes.Black;
                 PasswordTextBox.CaretIndex = 0;
             }
         }
@@ -138,7 +138,7 @@ namespace LunchIsEasy.UI.Wpf
             if (RepeatPasswordTextBox.Text == "Repeat password")
             {
                 RepeatPasswordTextBox.Text = string.Empty;
-                RepeatPasswordTextBox.Foreground = Brushes.Gray;
+                RepeatPasswordTextBox.Foreground = Brushes.Black;
                 RepeatPasswordTextBox.CaretIndex = 0;
             }
         }
@@ -152,7 +152,6 @@ namespace LunchIsEasy.UI.Wpf
                 RepeatPasswordTextBox.Foreground = Brushes.Gray;
             }
         }
-
 
     }
 }
