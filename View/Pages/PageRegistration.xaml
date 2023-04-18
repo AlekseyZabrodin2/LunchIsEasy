@@ -226,9 +226,6 @@
                     Command="{Binding ToRegisterAccount}">
 
                 </Button>
-            
-
-
         </Grid>
 
         <Grid Name="Cancel"
@@ -243,9 +240,6 @@
                     Command="{Binding ToAuthorizationWindow}">
 
                 </Button>
-            
-
-
         </Grid>
 
 
