@@ -12,6 +12,25 @@
     d:DesignWidth="750"
     mc:Ignorable="d">
 
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="Width" TargetName="LogIn">
+                        <DoubleAnimation
+                            AutoReverse="True"
+                            From="150"
+                            To="450"
+                            Duration="0:0:2" />
+                        
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+
+
     <Grid ShowGridLines="False">
 
 
@@ -114,7 +133,8 @@
         <Grid
             Name="LogInButton"
             Grid.Row="4"
-            Grid.Column="2">
+            Grid.Column="1"
+            Grid.ColumnSpan="3">
 
             <Button
                 Name="LogIn"
@@ -125,6 +145,7 @@
                 Command="{Binding ToAuthorizationAccount}"
                 Content="Log In"
                 Foreground="White" />
+
         </Grid>
 
         <Grid

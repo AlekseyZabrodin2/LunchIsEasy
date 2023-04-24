@@ -13,7 +13,32 @@
     mc:Ignorable="d">
 
 
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="Width" TargetName="SignUp">
+                        <DoubleAnimation
+                            AutoReverse="True"
+                            From="150"
+                            To="350"
+                            Duration="0:0:2" />
 
+                    </Storyboard>
+                </BeginStoryboard>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="Width" TargetName="CancelButton">
+                        <DoubleAnimation
+                            AutoReverse="True"
+                            From="150"
+                            To="350"
+                            Duration="0:0:2" />
+
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
 
 
     <Grid ShowGridLines="False">
@@ -181,14 +206,15 @@
         <Grid
             Name="RegistrationButton"
             Grid.Row="4"
-            Grid.Column="1"
+            Grid.Column="0"
+            Grid.ColumnSpan="2"
             Margin="5,5,15,20">
 
             <Button
                 Name="SignUp"
                 Width="150"
                 Height="50"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Right"
                 Background="DodgerBlue"
                 Command="{Binding ToRegisterAccount}"
                 Content="Sign Up"
@@ -199,6 +225,7 @@
             Name="Cancel"
             Grid.Row="4"
             Grid.Column="2"
+            Grid.ColumnSpan="2"
             Margin="15,5,5,20">
 
 
@@ -206,7 +233,7 @@
                 Name="CancelButton"
                 Width="150"
                 Height="50"
-                HorizontalAlignment="Center"
+                HorizontalAlignment="Left"
                 Background="White"
                 Command="{Binding ToAuthorizationWindow}"
                 Content="Cancel"
