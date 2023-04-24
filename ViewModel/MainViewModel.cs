@@ -22,12 +22,12 @@ namespace LunchIsEasy.UI.Wpf
     public class MainViewModel : BindableBase
     {
 
-        private string _name = "Name";
-        private string _surname = "Surname";
-        private string _telephone = "Telephone";
-        private string _login = "Login";
-        private string _password = "Password";
-        private string _repeatPassword = "Repeat password";
+        private string _name = string.Empty;
+        private string _surname = string.Empty;
+        private string _telephone = string.Empty;
+        private string _login = string.Empty;
+        private string _password = string.Empty;
+        private string _repeatPassword = string.Empty;
 
 
 
@@ -147,6 +147,8 @@ namespace LunchIsEasy.UI.Wpf
 
         private void PerformGoToRegistrationWindow()
         {
+            ClearingRegistrationPage();
+
             PageRegistration registration = new PageRegistration();
             Application.Current.MainWindow.Content = registration;
         }
@@ -168,27 +170,83 @@ namespace LunchIsEasy.UI.Wpf
         public RelayCommand ToRegisterAccount => _toRegisterAccount = new RelayCommand(PerformGoToRegisterAccount);
 
         private void PerformGoToRegisterAccount()
-        {               
-            AccountDBCommand.RegisterAccount(_name, _surname, _telephone, _login, _password, _repeatPassword);
-
-            ClearFields();
-        }
-
-
-
-        private RelayCommand _toClearFields;
-        public RelayCommand ToClearFields => _toClearFields = new RelayCommand(ClearFields);
-
-        public void ClearFields()
         {
-            SetName = "Name";
-            SetSurname = "Surname";
-            SetTelephone = "Telephone";
-            SetLogin = "Login";
-            SetPassword = "Password";
-            SetRepeatPassword = "Repeat password";
+            RegisterNewAccount();           
         }
 
+
+
+        //private RelayCommand _toClearFields;
+        //public RelayCommand ToClearFields => _toClearFields = new RelayCommand(ClearFields);
+
+        public void ClearingRegistrationPage()
+        {
+            SetName = string.Empty;
+            SetSurname = string.Empty;
+            SetTelephone = string.Empty;
+            SetLogin = string.Empty;
+            SetPassword = string.Empty;
+            SetRepeatPassword = string.Empty;
+        }
+
+
+        public void ClearingAuthorizationPage()
+        {            
+            SetLogin = string.Empty;
+            SetPassword = string.Empty;
+        }
+
+
+
+        private bool RegisterNewAccount()
+        {
+            var register = false;
+
+            if (string.IsNullOrEmpty(_login))
+            {
+                MessageBox.Show("Enter the Login", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return register;
+            }
+            if (string.IsNullOrEmpty(_password))
+            {
+                MessageBox.Show("Enter the Password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return register;
+            }
+            if (_password != _repeatPassword)
+            {
+                MessageBox.Show("Invalid password confirmation", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                SetRepeatPassword = string.Empty;
+                return register;
+            }
+
+            var registerAccount = AccountDBCommand.RegisterAccount(_name, _surname, _telephone, _login, _password, _repeatPassword);
+            if (registerAccount != true)
+            {
+                SetLogin = string.Empty;
+                SetPassword = string.Empty;
+                SetRepeatPassword = string.Empty;
+
+                return register;
+            }
+
+            ClearingRegistrationPage();
+
+            Application.Current.MainWindow.Content = new PageAuthorization();
+
+            return register = true;
+        }
+
+
+
+        private RelayCommand _toAuthorizationAccount;
+        public RelayCommand ToAuthorizationAccount => _toAuthorizationAccount = new RelayCommand(PerformGoToAuthorizationAccount);
+
+        private void PerformGoToAuthorizationAccount()
+        {
+            AccountDBCommand.AccountAuthorization(_login, _password);
+
+            ClearingAuthorizationPage();
+        }
 
 
     }
