@@ -2,6 +2,7 @@
 using ControlzEx.Standard;
 using LunchIsEasy.UI.Wpf.Model;
 using LunchIsEasy.UI.Wpf.Model.Data;
+using LunchIsEasy.UI.Wpf.View.Pages;
 using Microsoft.EntityFrameworkCore.Storage;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -14,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
@@ -149,6 +151,10 @@ namespace LunchIsEasy.UI.Wpf
         {
             ClearingRegistrationPage();
 
+            ImageBrush newBackground = new ImageBrush();
+            newBackground.ImageSource = new BitmapImage(new Uri("D:\\Develop\\LunchIsEasy\\View\\Sources\\food3.jpg", UriKind.RelativeOrAbsolute));
+            Application.Current.MainWindow.Background = newBackground;
+
             PageRegistration registration = new PageRegistration();
             Application.Current.MainWindow.Content = registration;
         }
@@ -160,6 +166,11 @@ namespace LunchIsEasy.UI.Wpf
 
         private void PerformGoToAuthorizationWindow()
         {
+
+            ImageBrush newBackground = new ImageBrush();
+            newBackground.ImageSource = new BitmapImage(new Uri("D:\\Develop\\LunchIsEasy\\View\\Sources\\food2.jpg", UriKind.RelativeOrAbsolute));
+            Application.Current.MainWindow.Background = newBackground;
+
             var authorizationPage = new PageAuthorization();
             Application.Current.MainWindow.Content = authorizationPage;
         }
@@ -171,13 +182,10 @@ namespace LunchIsEasy.UI.Wpf
 
         private void PerformGoToRegisterAccount()
         {
-            RegisterNewAccount();           
+            RegisterNewAccount();
         }
 
 
-
-        //private RelayCommand _toClearFields;
-        //public RelayCommand ToClearFields => _toClearFields = new RelayCommand(ClearFields);
 
         public void ClearingRegistrationPage()
         {
@@ -191,10 +199,11 @@ namespace LunchIsEasy.UI.Wpf
 
 
         public void ClearingAuthorizationPage()
-        {            
+        {
             SetLogin = string.Empty;
             SetPassword = string.Empty;
         }
+
 
 
 
@@ -231,7 +240,7 @@ namespace LunchIsEasy.UI.Wpf
 
             ClearingRegistrationPage();
 
-            Application.Current.MainWindow.Content = new PageAuthorization();
+            PageMenuBackground();
 
             return register = true;
         }
@@ -243,10 +252,39 @@ namespace LunchIsEasy.UI.Wpf
 
         private void PerformGoToAuthorizationAccount()
         {
-            AccountDBCommand.AccountAuthorization(_login, _password);
-
-            ClearingAuthorizationPage();
+            AuthorizationAccount();
         }
+
+
+
+        private bool AuthorizationAccount()
+        {
+            var authorization = false;
+
+            var accountAuthorization = AccountDBCommand.AccountAuthorization(_login, _password);
+
+            if (accountAuthorization)
+            {
+                PageMenuBackground();
+
+                ClearingAuthorizationPage();
+
+                authorization = true;
+            }
+
+            return authorization;
+        }
+
+        private static void PageMenuBackground()
+        {
+            ImageBrush newBackground = new ImageBrush();
+            newBackground.ImageSource = new BitmapImage(new Uri("D:\\Develop\\LunchIsEasy\\View\\Sources\\food4.jpg", UriKind.RelativeOrAbsolute));
+            Application.Current.MainWindow.Background = newBackground;
+
+            Application.Current.MainWindow.Content = new PageMenu();
+        }
+
+
 
 
     }
