@@ -81,7 +81,7 @@ namespace LunchIsEasy.UI.Wpf.Model.Data
 
                     if (account)
                     {
-                        MessageBox.Show("Authorization was successful", "Congratulations", MessageBoxButton.OK, MessageBoxImage.Information);
+                        //MessageBox.Show("Authorization was successful", "Congratulations", MessageBoxButton.OK, MessageBoxImage.Information);
                         return registerAccount = true;
                     }
                     else
