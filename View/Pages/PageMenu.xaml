@@ -1,0 +1,59 @@
+﻿<UserControl
+    x:Class="LunchIsEasy.UI.Wpf.View.Pages.PageMenu"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpf="clr-namespace:LunchIsEasy.UI.Wpf"
+    d:DataContext="{d:DesignInstance Type=wpf:MainViewModel,
+                                     IsDesignTimeCreatable=False}"
+    mc:Ignorable="d">
+
+
+
+
+    <Grid ShowGridLines="False">
+
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+
+        <Grid
+            Name="MenuForm"
+            Grid.Row="0"
+            Grid.RowSpan="7"
+            Grid.Column="0"
+            Grid.ColumnSpan="5">
+
+            <Frame x:Name="authorization" />
+
+        </Grid>
+
+
+
+
+
+
+
+
+
+
+
+    </Grid>
+</UserControl>

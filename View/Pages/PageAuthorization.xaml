@@ -1,24 +1,41 @@
-﻿<UserControl x:Class="LunchIsEasy.UI.Wpf.PageAuthorization"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:wpf="clr-namespace:LunchIsEasy.UI.Wpf"
-             d:DataContext="{d:DesignInstance Type=wpf:MainViewModel, IsDesignTimeCreatable=False}"
-             mc:Ignorable="d" 
-             d:DesignHeight="450" 
-             d:DesignWidth="750">
+﻿<UserControl
+    x:Class="LunchIsEasy.UI.Wpf.PageAuthorization"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:wpf="clr-namespace:LunchIsEasy.UI.Wpf"
+    Width="750"
+    Height="450"
+    d:DataContext="{d:DesignInstance Type=wpf:MainViewModel,
+                                     IsDesignTimeCreatable=False}"
+    mc:Ignorable="d">
+
+
+    <UserControl.InputBindings>
+        <KeyBinding Key="Enter" Command="{Binding ToAuthorizationAccount}" />
+    </UserControl.InputBindings>
+
+    <UserControl.Triggers>
+        <EventTrigger RoutedEvent="Loaded">
+            <EventTrigger.Actions>
+                <BeginStoryboard>
+                    <Storyboard TargetProperty="Width" TargetName="LogIn">
+                        <DoubleAnimation
+                            AutoReverse="True"
+                            From="150"
+                            To="550"
+                            Duration="0:0:2" />
+
+                    </Storyboard>
+                </BeginStoryboard>
+            </EventTrigger.Actions>
+        </EventTrigger>
+    </UserControl.Triggers>
+
 
     <Grid ShowGridLines="False">
-
-        <Grid.Resources>
-
-            <Style TargetType="{x:Type Button}" BasedOn="{StaticResource {x:Type Button}}">
-                <Setter Property="Background" Value="{DynamicResource MahApps.Brushes.Accent}" />
-            </Style>
-
-        </Grid.Resources>
 
         <Grid.RowDefinitions>
             <RowDefinition />
@@ -26,8 +43,7 @@
             <RowDefinition />
             <RowDefinition />
             <RowDefinition />
-            <RowDefinition />
-            <RowDefinition />
+
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -35,139 +51,132 @@
             <ColumnDefinition />
             <ColumnDefinition />
             <ColumnDefinition />
-            <ColumnDefinition />
         </Grid.ColumnDefinitions>
 
-        <Grid Name="LoginForm"
-              Grid.Row="1"
-              Grid.Column="1"
-              Grid.RowSpan="5"
-              Grid.ColumnSpan="3"
-              Background="LightGray">
+        <Grid
+            Name="LoginForm"
+            Grid.Row="0"
+            Grid.RowSpan="5"
+            Grid.Column="0"
+            Grid.ColumnSpan="4"
+            Background="LightGray">
 
-            <Frame x:Name="authorization"/>
+            <Frame x:Name="authorization" />
 
         </Grid>
 
-        <Grid Name="LoginLabel"
-              Grid.Column="2"
-              Grid.Row="1">
+        <Grid
+            Name="LoginLabel"
+            Grid.Row="0"
+            Grid.Column="1"
+            Grid.ColumnSpan="2">
 
-            <TextBlock Name="Login"
-                   
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Bottom"
-                   Text="Login"
-                   FontSize="25"
-                   FontWeight="Bold"
-                   Foreground="Gray">
+            <TextBlock
+                Name="Login"
+                HorizontalAlignment="Center"
+                VerticalAlignment="Bottom"
+                FontSize="25"
+                FontWeight="Bold"
+                Foreground="Gray"
+                Text="Login" />
 
-            </TextBlock>
         </Grid>
 
-        <Grid Name="LoginField"
-              Grid.Column="1"
-              Grid.Row="2"
-              Grid.ColumnSpan="3">
+        <Grid
+            Name="LoginField"
+            Grid.Row="1"
+            Grid.Column="1"
+            Grid.ColumnSpan="2">
 
-            <Image Source="D:\Develop\LunchIsEasy\LunchIsEasy.UI.Wpf\Sources\userIcon.png"                   
-                   Height="35"
-                   Width="35"
-                   HorizontalAlignment="Left"
-                   Margin="35,0,0,0">
+            <Image
+                Width="35"
+                Height="35"
+                Margin="35,0,0,0"
+                HorizontalAlignment="Left"
+                Source="D:\Develop\LunchIsEasy\View\Sources\userIcon.png" />
 
-            </Image>
+            <Border Margin="85,15,35,15">
 
-            <Border CornerRadius="10"
-                    BorderThickness="1"
-                    BorderBrush="Gray"                    
-                    Margin="85, 15, 35, 15">
+                <TextBox
+                    Name="LoginTextBox"
+                    materialDesign:HintAssist.Hint="Login"
+                    FontSize="16"
+                    Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+                    Text="{Binding SetLogin, UpdateSourceTrigger=PropertyChanged}" />
 
-                <TextBox Name="LoginTextBox"
-                         Text="User Name"
-                         FontSize="15"
-                         Background="Transparent"
-                         BorderThickness="0"
-                         Foreground="Gray"
-                         TextAlignment="Left"
-                         VerticalContentAlignment="Center"
-                         GotFocus="OnLoginTextBoxGotFocus"
-                         LostFocus="OnLoginTextBoxLostFocus">
-                </TextBox>
+
             </Border>
         </Grid>
 
-        <Grid Name="PasswordField"
-              Grid.Column="1"
-              Grid.Row="3"
-              Grid.ColumnSpan="3">
+        <Grid
+            Name="PasswordField"
+            Grid.Row="2"
+            Grid.Column="1"
+            Grid.ColumnSpan="2">
 
-            <Image Source="D:\Develop\LunchIsEasy\LunchIsEasy.UI.Wpf\Sources\passwordicon.png"                   
-                   Height="35"
-                   Width="35"
-                   HorizontalAlignment="Left"
-                   Margin="35,0,0,0">
+            <Image
+                Width="35"
+                Height="35"
+                Margin="35,0,0,0"
+                HorizontalAlignment="Left"
+                Source="D:\Develop\LunchIsEasy\View\Sources\passwordicon.png" />
 
-            </Image>
+            <Border Margin="85,15,35,15">
 
-            <Border CornerRadius="10"
-                    BorderThickness="1"
-                    BorderBrush="Gray"
-                    Margin="85, 15, 35, 15">
+                <PasswordBox
+                    Name="PasswordTextBox"
+                    materialDesign:HintAssist.Hint="Password"
+                    materialDesign:PasswordBoxAssist.Password="{Binding SetPassword, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}"
+                    FontSize="16"
+                    Style="{StaticResource MaterialDesignFloatingHintPasswordBox}" />
 
-                <TextBox Name="PasswordTextBox"
-                         Text="Password"
-                         FontSize="15"
-                         Background="Transparent"
-                         BorderThickness="0"
-                         Foreground="Gray"                         
-                         TextAlignment="Left"
-                         VerticalContentAlignment="Center"
-                         GotFocus="OnPasswordTextBoxGotFocus"
-                         LostFocus="OnPasswordTextBoxLostFocus">
-                </TextBox>
             </Border>
         </Grid>
 
-        <Grid Name="LogInButton"
-              Grid.Column="2"
-              Grid.Row="4">
+        <Grid
+            Name="LogInButton"
+            Grid.Row="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="4">
 
-            <Button Name="LogIn"
-                    Width="150"
-                    Height="50"                    
-                    Background="DodgerBlue"
-                    HorizontalAlignment="Center"
-                    Foreground="White"
-                    Content="Log In" >
+            <Button
+                Name="LogIn"
+                Width="150"
+                Height="50"
+                HorizontalAlignment="Center"
+                Background="DodgerBlue"
+                Command="{Binding ToAuthorizationAccount}"
+                Content="Log In"
+                Foreground="White" />
 
-            </Button>
         </Grid>
 
-        <Grid Name="RegistrationButton"
-              Grid.Column="1"
-              Grid.Row="5"
-              Grid.ColumnSpan="3"
-              Margin="10">
+        <Grid
+            Name="RegistrationButton"
+            Grid.Row="4"
+            Grid.Column="1"
+            Grid.ColumnSpan="2"
+            Margin="10">
 
-            <TextBlock Name="SignUp"
-                       HorizontalAlignment="Center"
-                       Text="Lost your username or password?" >
-                
+            <TextBlock
+                Name="SignUp"
+                HorizontalAlignment="Center"
+                Text="Lost your username or password?">
+
                 <TextBlock.InputBindings>
-                    <MouseBinding Command="{Binding ToRegistrationWindow}" MouseAction="LeftClick" />                    
+                    <MouseBinding Command="{Binding ToRegistrationWindow}" MouseAction="LeftClick" />
                 </TextBlock.InputBindings>
-                
+
                 <TextBlock.Style>
-                    <Style TargetType="TextBlock">                        
+                    <Style TargetType="TextBlock">
                         <Style.Triggers>
-                            <Trigger Property ="IsMouseOver" Value="True">
-                                <Setter Property= "Foreground" Value="Red"/>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Foreground" Value="Red" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
                 </TextBlock.Style>
-                
+
             </TextBlock>
         </Grid>
 

@@ -2,6 +2,7 @@
 using ControlzEx.Standard;
 using LunchIsEasy.UI.Wpf.Model;
 using LunchIsEasy.UI.Wpf.Model.Data;
+using LunchIsEasy.UI.Wpf.View.Pages;
 using Microsoft.EntityFrameworkCore.Storage;
 using Prism.Commands;
 using Prism.Mvvm;
@@ -14,6 +15,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
@@ -22,12 +24,12 @@ namespace LunchIsEasy.UI.Wpf
     public class MainViewModel : BindableBase
     {
 
-        private string _name = "Name";
-        private string _surname = "Surname";
-        private string _telephone = "Telephone";
-        private string _login = "Login";
-        private string _password = "Password";
-        private string _repeatPassword = "Repeat password";
+        private string _name = string.Empty;
+        private string _surname = string.Empty;
+        private string _telephone = string.Empty;
+        private string _login = string.Empty;
+        private string _password = string.Empty;
+        private string _repeatPassword = string.Empty;
 
 
 
@@ -147,6 +149,12 @@ namespace LunchIsEasy.UI.Wpf
 
         private void PerformGoToRegistrationWindow()
         {
+            ClearingRegistrationPage();
+
+            ImageBrush newBackground = new ImageBrush();
+            newBackground.ImageSource = new BitmapImage(new Uri("D:\\Develop\\LunchIsEasy\\View\\Sources\\food3.jpg", UriKind.RelativeOrAbsolute));
+            Application.Current.MainWindow.Background = newBackground;
+
             PageRegistration registration = new PageRegistration();
             Application.Current.MainWindow.Content = registration;
         }
@@ -158,6 +166,11 @@ namespace LunchIsEasy.UI.Wpf
 
         private void PerformGoToAuthorizationWindow()
         {
+
+            ImageBrush newBackground = new ImageBrush();
+            newBackground.ImageSource = new BitmapImage(new Uri("D:\\Develop\\LunchIsEasy\\View\\Sources\\food2.jpg", UriKind.RelativeOrAbsolute));
+            Application.Current.MainWindow.Background = newBackground;
+
             var authorizationPage = new PageAuthorization();
             Application.Current.MainWindow.Content = authorizationPage;
         }
@@ -168,26 +181,109 @@ namespace LunchIsEasy.UI.Wpf
         public RelayCommand ToRegisterAccount => _toRegisterAccount = new RelayCommand(PerformGoToRegisterAccount);
 
         private void PerformGoToRegisterAccount()
-        {               
-            AccountDBCommand.RegisterAccount(_name, _surname, _telephone, _login, _password, _repeatPassword);
-
-            ClearFields();
-        }
-
-
-
-        private RelayCommand _toClearFields;
-        public RelayCommand ToClearFields => _toClearFields = new RelayCommand(ClearFields);
-
-        public void ClearFields()
         {
-            SetName = "Name";
-            SetSurname = "Surname";
-            SetTelephone = "Telephone";
-            SetLogin = "Login";
-            SetPassword = "Password";
-            SetRepeatPassword = "Repeat password";
+            RegisterNewAccount();
         }
+
+
+
+        public void ClearingRegistrationPage()
+        {
+            SetName = string.Empty;
+            SetSurname = string.Empty;
+            SetTelephone = string.Empty;
+            SetLogin = string.Empty;
+            SetPassword = string.Empty;
+            SetRepeatPassword = string.Empty;
+        }
+
+
+        public void ClearingAuthorizationPage()
+        {
+            SetLogin = string.Empty;
+            SetPassword = string.Empty;
+        }
+
+
+
+
+        private bool RegisterNewAccount()
+        {
+            var register = false;
+
+            if (string.IsNullOrEmpty(_login))
+            {
+                MessageBox.Show("Enter the Login", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return register;
+            }
+            if (string.IsNullOrEmpty(_password))
+            {
+                MessageBox.Show("Enter the Password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                return register;
+            }
+            if (_password != _repeatPassword)
+            {
+                MessageBox.Show("Invalid password confirmation", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                SetRepeatPassword = string.Empty;
+                return register;
+            }
+
+            var registerAccount = AccountDBCommand.RegisterAccount(_name, _surname, _telephone, _login, _password, _repeatPassword);
+            if (registerAccount != true)
+            {
+                SetLogin = string.Empty;
+                SetPassword = string.Empty;
+                SetRepeatPassword = string.Empty;
+
+                return register;
+            }
+
+            ClearingRegistrationPage();
+
+            PageMenuBackground();
+
+            return register = true;
+        }
+
+
+
+        private RelayCommand _toAuthorizationAccount;
+        public RelayCommand ToAuthorizationAccount => _toAuthorizationAccount = new RelayCommand(PerformGoToAuthorizationAccount);
+
+        private void PerformGoToAuthorizationAccount()
+        {
+            AuthorizationAccount();
+        }
+
+
+
+        private bool AuthorizationAccount()
+        {
+            var authorization = false;
+
+            var accountAuthorization = AccountDBCommand.AccountAuthorization(_login, _password);
+
+            if (accountAuthorization)
+            {
+                PageMenuBackground();
+
+                ClearingAuthorizationPage();
+
+                authorization = true;
+            }
+
+            return authorization;
+        }
+
+        private static void PageMenuBackground()
+        {
+            ImageBrush newBackground = new ImageBrush();
+            newBackground.ImageSource = new BitmapImage(new Uri("D:\\Develop\\LunchIsEasy\\View\\Sources\\food4.jpg", UriKind.RelativeOrAbsolute));
+            Application.Current.MainWindow.Background = newBackground;
+
+            Application.Current.MainWindow.Content = new PageMenu();
+        }
+
 
 
 

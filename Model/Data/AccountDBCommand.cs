@@ -1,5 +1,4 @@
-﻿using ControlzEx.Standard;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,24 +21,11 @@ namespace LunchIsEasy.UI.Wpf.Model.Data
             }
         }
 
+        
 
-        public static void RegisterAccount(string name, string surname, string telephone, string login, string password, string repeatpassword)
+        public static bool RegisterAccount(string name, string surname, string telephone, string login, string password, string repeatpassword)
         {
-            if (login == "Login")
-            {
-                MessageBox.Show("Enter the Login", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-            if (password == "Password")
-            {
-                MessageBox.Show("Enter the Password", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
-            if (password != repeatpassword)
-            {
-                MessageBox.Show("Invalid password confirmation", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
-                return;
-            }
+            var registerAccount = false; 
 
             try
             {
@@ -63,13 +49,14 @@ namespace LunchIsEasy.UI.Wpf.Model.Data
 
                         dataBase.Accounts.Add(newAccounts);
                         dataBase.SaveChanges();
-                        MessageBox.Show("Registration completed successfully", "Congratulations");
 
-                        Application.Current.MainWindow.Content = new PageAuthorization();
+                        MessageBox.Show("Registration completed successfully", "Congratulations", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return registerAccount = true;
                     }
                     else
                     {
-                        MessageBox.Show("User with this login already exists", "Information", MessageBoxButton.OK, MessageBoxImage.Information);
+                        MessageBox.Show("User with this login already exists", "Information", MessageBoxButton.OK, MessageBoxImage.Error);                        
+                        return registerAccount;
                     }
                 }
             }
@@ -78,6 +65,38 @@ namespace LunchIsEasy.UI.Wpf.Model.Data
                 throw;
             }
         }
+
+
+
+
+        public static bool AccountAuthorization(string login, string password)
+        {
+            var registerAccount = false;
+
+            try
+            {
+                using (AccountDBContext dataBase = new AccountDBContext())
+                {
+                    var account = dataBase.Accounts.Any(element => element.Login == login && element.Password == password);
+
+                    if (account)
+                    {
+                        //MessageBox.Show("Authorization was successful", "Congratulations", MessageBoxButton.OK, MessageBoxImage.Information);
+                        return registerAccount = true;
+                    }
+                    else
+                    {
+                        MessageBox.Show("Wrong login or password", "Information", MessageBoxButton.OK, MessageBoxImage.Error);
+                        return registerAccount;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                throw;
+            }
+        }
+
 
 
 
